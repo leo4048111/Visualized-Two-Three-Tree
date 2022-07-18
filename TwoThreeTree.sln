@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TwoThreeTree", "TwoThreeTree.vcxproj", "{B6EE5508-40A7-4786-B2F2-1945F72ED8B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6EE5508-40A7-4786-B2F2-1945F72ED8B2}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6EE5508-40A7-4786-B2F2-1945F72ED8B2}.Debug|x86.Build.0 = Debug|Win32
+		{B6EE5508-40A7-4786-B2F2-1945F72ED8B2}.Release|x86.ActiveCfg = Release|Win32
+		{B6EE5508-40A7-4786-B2F2-1945F72ED8B2}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB999276-2150-46BB-A447-1ACE2CBC30AB}
+	EndGlobalSection
+EndGlobal
