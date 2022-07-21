@@ -111,12 +111,13 @@ namespace TreeNodePositioning
     template<class T>
     class Helper
     {
-    public:
+    private:
         Helper() = delete;  //INCONSTRUCTIBLE
         Helper(Helper&&) = delete;
         Helper(const Helper&) = delete;
         Helper& operator=(const Helper&) = delete;
 
+    public:
         static void calculate(ImVector<Node<T>*>& nodeList, const ds::TwoThreeNode<T>* twoThreeRoot, const float siblingSpacing, const float treeSpacing, const float size)
         {
             nodeList.clear();
