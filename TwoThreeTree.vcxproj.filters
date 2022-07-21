@@ -93,9 +93,6 @@
     <ClInclude Include="TreeNodePositioning.hpp">
       <Filter>menu</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.hpp">
-      <Filter>stb_image</Filter>
-    </ClInclude>
     <ClInclude Include="font\Karla-Regular.hpp">
       <Filter>font</Filter>
     </ClInclude>
@@ -104,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="font\font.hpp">
       <Filter>font</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image\stb_image.hpp">
+      <Filter>stb_image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

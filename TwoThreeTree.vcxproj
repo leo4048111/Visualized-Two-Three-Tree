@@ -105,7 +105,7 @@
     <ClInclude Include="font\Cousine-Regular.hpp" />
     <ClInclude Include="font\font.hpp" />
     <ClInclude Include="font\Karla-Regular.hpp" />
-    <ClInclude Include="stb_image.hpp" />
+    <ClInclude Include="stb_image\stb_image.hpp" />
     <ClInclude Include="TreeNodePositioning.hpp" />
     <ClInclude Include="imgui\backend\imgui_impl_glfw.h" />
     <ClInclude Include="imgui\backend\imgui_impl_opengl2.h" />

@@ -12,9 +12,10 @@ namespace TreeNodePositioning
         T k2{NULL};
         int n{ NULL };
 
-        float x{ 0 };
-        int y{ 0 };
-        float mod{ 0 };
+        float x{ 0.f };
+        int iy{ 0 };
+        float y{ 0.f };
+        float mod{ 0.f };
 
         Node* parent{nullptr};
         Node* children[3]{ nullptr, nullptr, nullptr };
@@ -138,7 +139,7 @@ namespace TreeNodePositioning
 
             Node<T>* node = new Node<T>();
             node->x = -1.f;
-            node->y = depth;
+            node->iy = depth;
             node->mod = 0.f;
 
             node->k1 = twoThreeNode->k1;
@@ -220,7 +221,7 @@ namespace TreeNodePositioning
                 for (int i = 0; i < nodeList.size(); i++) siblingContour[i] = FLT_MIN;
                 int maxRightContourKey = getRightContour(sibling, 0.f, siblingContour);
 
-                for (int level = node->y + 1; level <= min(maxLeftContourKey, maxRightContourKey); level++)
+                for (int level = node->iy + 1; level <= min(maxLeftContourKey, maxRightContourKey); level++)
                 {
                     float distance = nodeContour[level] - siblingContour[level];
                     if (distance + shiftValue < minDistance) shiftValue = minDistance - distance;
@@ -246,10 +247,10 @@ namespace TreeNodePositioning
         static int getLeftContour(Node<T>* node, float modSum, float* values)
         {
             if (node == nullptr) return -1;
-            values[node->y] = fminf(values[node->y], node->x + modSum);
+            values[node->iy] = fminf(values[node->iy], node->x + modSum);
             modSum += node->mod;
 
-            int depth = node->y;
+            int depth = node->iy;
             if (node->children[0] != nullptr) depth = max(depth, getLeftContour(node->children[0], modSum, values));
             if (node->children[1] != nullptr) depth = max(depth, getLeftContour(node->children[1], modSum, values));
             if (node->children[2] != nullptr) depth = max(depth, getLeftContour(node->children[2], modSum, values));
@@ -259,10 +260,10 @@ namespace TreeNodePositioning
         static int getRightContour(Node<T>* node, float modSum, float* values)
         {
             if (node == nullptr) return -1;
-            values[node->y] = fmaxf(values[node->y], node->x + modSum);
+            values[node->iy] = fmaxf(values[node->iy], node->x + modSum);
             modSum += node->mod;
 
-            int depth = node->y;
+            int depth = node->iy;
             if (node->children[0] != nullptr) depth = max(depth, getRightContour(node->children[0], modSum, values));
             if (node->children[1] != nullptr) depth = max(depth, getRightContour(node->children[1], modSum, values));
             if (node->children[2] != nullptr) depth = max(depth, getRightContour(node->children[2], modSum, values));
@@ -301,7 +302,7 @@ namespace TreeNodePositioning
             int maxLeftContourKey = getLeftContour(node, 0.f, nodeContour);
 
             float shiftAmount = 0.f;
-            for (int i = node->y; i <= maxLeftContourKey; i++)
+            for (int i = node->iy; i <= maxLeftContourKey; i++)
             {
                 if (nodeContour[i] + shiftAmount < 0) shiftAmount = (nodeContour[i] * -1);
             }
@@ -319,6 +320,7 @@ namespace TreeNodePositioning
         {
             if (node == nullptr) return;
             node->x += modSum;
+            node->y = (float)node->iy;
             modSum += node->mod;
 
             calculateFinalX(node->children[0], modSum);
@@ -328,7 +330,7 @@ namespace TreeNodePositioning
             if (node->getChildrenCnt() == 0)
             {
                 node->width = node->x;
-                node->height = node->y;
+                node->height = node->iy;
             }
             else
             {

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Menu.hpp"
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.hpp"
+#include "stb_image/stb_image.hpp"
 
 #define BAIL_IF_ERROR(ok) if(!ok) goto bail
 

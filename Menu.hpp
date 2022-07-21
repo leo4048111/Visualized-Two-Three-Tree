@@ -83,6 +83,33 @@ private:
         }
     }
 
+    inline void dragNode(ImVec2 mouse_pos_in_canvas) {
+        for (int i = 0; i < nodeList.size(); i++)
+        {
+            auto node = nodeList[i];
+            if (node->n == 1)
+            {
+                if (mouse_pos_in_canvas.x >= nodeList[i]->x && mouse_pos_in_canvas.x <= nodeList[i]->x + ZOOM(nodeSize) &&
+                    mouse_pos_in_canvas.y >= node->y * ZOOM(levelSpacing) && mouse_pos_in_canvas.y <= node->y * ZOOM(levelSpacing) + ZOOM(nodeSize))
+                {
+                    node->x += ImGui::GetIO().MouseDelta.x;
+                    node->y += ImGui::GetIO().MouseDelta.y / ZOOM(levelSpacing);
+                    return;
+                }
+            }
+            else
+            {
+                if (mouse_pos_in_canvas.x >= nodeList[i]->x && mouse_pos_in_canvas.x <= nodeList[i]->x + ZOOM(nodeSize * 2) &&
+                    mouse_pos_in_canvas.y >= node->y * ZOOM(levelSpacing) && mouse_pos_in_canvas.y <= node->y * ZOOM(levelSpacing) + ZOOM(nodeSize))
+                {
+                    node->x += ImGui::GetIO().MouseDelta.x;
+                    node->y += ImGui::GetIO().MouseDelta.y / ZOOM(levelSpacing);
+                    return;
+                }
+            }
+        }
+    }
+
 private:
     GLFWwindow* window{nullptr};
 
@@ -98,6 +125,7 @@ private:
     float fontSize{ 50.f };
     float nodeRounding{ 20.f };
     float nodeOuterWidth{ 3.f };
+    int connectorStyle{ 0 };
     
     //render specs
     ImVec4 nodeOuterColor{ 0,0,0,1 };
@@ -187,7 +215,7 @@ inline void Menu::renderCanvas()
     ImGui::SetNextWindowPos(ImVec2(557, 19), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(722, 698), ImGuiCond_FirstUseEver);
     ImGui::Begin("Canvas", 0, windowFlags);
-    if (ImGui::Button("0.50x")) { zoomScale = 0.25f; refreshNodeList(); }
+    if (ImGui::Button("0.50x")) { zoomScale = 0.50f; refreshNodeList(); }
     ImGui::SameLine();
     if (ImGui::Button("1.00x")) { zoomScale = 1.00f; refreshNodeList(); }
     ImGui::SameLine();
@@ -217,7 +245,7 @@ inline void Menu::renderCanvas()
     canvasOrigin = { canvas_tl.x + dragDistance.x + ZOOM(canvas_sz.x) / 2, canvas_tl.y + dragDistance.y + ZOOM(canvas_sz.y) / 2}; //the screen coord for canvas origin point
     const ImVec2 mouse_pos_in_canvas(io.MousePos.x - canvasOrigin.x, io.MousePos.y - canvasOrigin.y);
     //update drag distance
-    if (isActive && ImGui::IsMouseDragging(ImGuiMouseButton_Left, 0.0f))
+    if (isActive && ImGui::IsMouseDragging(ImGuiMouseButton_Right, -1.0f))
     {
         dragDistance.x += io.MouseDelta.x;
         dragDistance.y += io.MouseDelta.y;
@@ -226,6 +254,11 @@ inline void Menu::renderCanvas()
     if (is_hovered && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
     {
         updateMarker(mouse_pos_in_canvas);
+    }
+
+    if (isActive && ImGui::IsMouseDragging(ImGuiMouseButton_Left, 0.0f))
+    {
+        dragNode(mouse_pos_in_canvas);
     }
 
     drawList->PushClipRect(canvas_tl, canvas_br, true);
@@ -286,7 +319,7 @@ inline void Menu::renderControls()
             auto result = tree.searchFor(search_value);
             if (result != NULL)
             {
-                LOG("[%s] Found node with value %d at memory cell: 0x%08X\n", "Info", search_value, result);
+                LOG("[%s] Found node with value %d at memory block: 0x%08X\n", "Info", search_value, result);
                 for (int i = 0; i < nodeList.size(); i++) 
                 {
                     if (nodeList[i]->n == 1)
@@ -317,6 +350,10 @@ inline void Menu::renderControls()
         if (ImGui::Button("Print tree")) printNodeList();
         ImGui::SameLine();
         ImGui::Checkbox("Grid view", &this->shouldDrawGrid);
+        ImGui::SameLine();
+        ImGui::RadioButton("Straight connector", &connectorStyle, 0); 
+        ImGui::SameLine();
+        ImGui::RadioButton("Right-Angle connector", &connectorStyle, 1);
         if (ImGui::SliderFloat("Node size", &this->nodeSize, 40.f, 100.f)) refreshNodeList();
         if (ImGui::SliderFloat("Level spacing", &this->levelSpacing, 50.f, 200.f)) refreshNodeList();
         if (ImGui::SliderFloat("Sibling spacing", &this->siblingSpacing, 40.f, 150.f)) refreshNodeList();
@@ -372,7 +409,7 @@ inline void Menu::renderNode(TreeNodePositioning::Node<int>* node)
         drawList->AddRect(
             ImVec2(canvasOrigin.x + node->x, canvasOrigin.y + node->y * ZOOM(levelSpacing)),
             ImVec2(canvasOrigin.x + node->x + ZOOM(nodeSize), canvasOrigin.y + node->y * ZOOM(levelSpacing) + ZOOM(nodeSize)),
-            ImGui::ColorConvertFloat4ToU32(node->isMarked ? markColor : nodeOuterColor), ZOOM(nodeRounding * nodeSize / 60.f), 0.f, ZOOM(nodeOuterWidth));
+            ImGui::ColorConvertFloat4ToU32(node->isMarked ? markColor : nodeOuterColor), ZOOM(nodeRounding * nodeSize / 60.f), 0, ZOOM(nodeOuterWidth));
         char buf[256];
         sprintf_s(buf, "%d", node->k1);
         int modifier = abs(node->k1) < 10 ? 1 : (int)log10(node->k1) + 1;
@@ -392,7 +429,7 @@ inline void Menu::renderNode(TreeNodePositioning::Node<int>* node)
         drawList->AddRect(
             ImVec2(canvasOrigin.x + node->x, canvasOrigin.y + node->y * ZOOM(levelSpacing)),
             ImVec2(canvasOrigin.x + node->x + 2 * ZOOM(nodeSize), canvasOrigin.y + node->y * ZOOM(levelSpacing) + ZOOM(nodeSize)),
-            ImGui::ColorConvertFloat4ToU32(node->isMarked ? markColor : nodeOuterColor), ZOOM(nodeRounding * nodeSize / 60.f), 0.f, ZOOM(nodeOuterWidth));
+            ImGui::ColorConvertFloat4ToU32(node->isMarked ? markColor : nodeOuterColor), ZOOM(nodeRounding * nodeSize / 60.f), 0, ZOOM(nodeOuterWidth));
         char buf[256];
         sprintf_s(buf, "%d|%d", node->k1, node->k2);
         int modifier = (abs(node->k1) < 10 ? 1 : (int)log10(node->k1) + 1) + (abs(node->k2) < 10 ? 1 : (int)log10(node->k2) + 1) + 1;
@@ -411,7 +448,16 @@ inline void Menu::renderNode(TreeNodePositioning::Node<int>* node)
         ImVec2 dst{ 0,0 };
         if (node->parent->n == 1) dst = { canvasOrigin.x + node->parent->x + ZOOM(nodeSize / 2), canvasOrigin.y + node->parent->y * ZOOM(levelSpacing) + ZOOM(nodeSize) + ZOOM(nodeOuterWidth)};
         else dst = { canvasOrigin.x + node->parent->x + ZOOM(nodeSize), canvasOrigin.y + node->parent->y * ZOOM(levelSpacing) + ZOOM(nodeSize) };
-        drawList->AddLine(src, dst, ImGui::ColorConvertFloat4ToU32(connectorColor), 2.f);
+        if(this->connectorStyle == 0) //Straight connector
+            drawList->AddLine(src, dst, ImGui::ColorConvertFloat4ToU32(connectorColor), 2.f);
+        else //Right-Angle connector
+        {
+            drawList->AddLine(src, ImVec2(src.x, src.y + (dst.y - src.y) / 2), ImGui::ColorConvertFloat4ToU32(connectorColor), 2.f);
+            drawList->AddLine(
+                ImVec2(src.x, src.y + (dst.y - src.y) / 2),
+                ImVec2(dst.x, src.y + (dst.y - src.y) / 2), ImGui::ColorConvertFloat4ToU32(connectorColor), 2.f);
+            drawList->AddLine(ImVec2(dst.x, src.y + (dst.y - src.y) / 2), dst, ImGui::ColorConvertFloat4ToU32(connectorColor), 2.f);
+        }
     }
 }
 
