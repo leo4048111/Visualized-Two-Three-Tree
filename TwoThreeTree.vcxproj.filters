@@ -26,6 +26,9 @@
     <Filter Include="font">
       <UniqueIdentifier>{a9ab3f22-68d2-4842-a940-8545dd5d489b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{f8867b9e-4f4a-420a-af4e-e6a546e6448e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,9 +93,6 @@
     <ClInclude Include="Log.hpp">
       <Filter>menu</Filter>
     </ClInclude>
-    <ClInclude Include="TreeNodePositioning.hpp">
-      <Filter>menu</Filter>
-    </ClInclude>
     <ClInclude Include="font\Karla-Regular.hpp">
       <Filter>font</Filter>
     </ClInclude>
@@ -104,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="stb_image\stb_image.hpp">
       <Filter>stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNodePositioning.hpp">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

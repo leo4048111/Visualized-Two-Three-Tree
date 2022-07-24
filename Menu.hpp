@@ -271,6 +271,8 @@ inline void Menu::renderCanvas()
     }
     renderTree();
 
+    drawList->PopClipRect();
+
     ImGui::End();
 }
 
