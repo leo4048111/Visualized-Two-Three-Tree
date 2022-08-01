@@ -45,13 +45,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\dependency\glfw\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>.\dependency\glfw\lib-vc2010-32;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\src\dependency\glfw\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>.\src\dependency\glfw\lib-vc2010-32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\dependency\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\dependency\glfw\lib-vc2010-32;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\src\dependency\glfw\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\src\dependency\glfw\lib-vc2010-32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -60,7 +60,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>./imgui;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./src/imgui;$(ProjectDir)/src;$(ProjectDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -79,7 +79,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>./imgui;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./src/imgui;$(ProjectDir)/src;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,35 +90,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="imgui\backend\imgui_impl_glfw.cpp" />
-    <ClCompile Include="imgui\backend\imgui_impl_opengl2.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\imgui\backend\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\imgui\backend\imgui_impl_opengl2.cpp" />
+    <ClCompile Include="src\imgui\imgui.cpp" />
+    <ClCompile Include="src\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\imgui\imgui_tables.cpp" />
+    <ClCompile Include="src\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="font\Cousine-Regular.hpp" />
-    <ClInclude Include="font\font.hpp" />
-    <ClInclude Include="font\Karla-Regular.hpp" />
-    <ClInclude Include="stb_image\stb_image.hpp" />
-    <ClInclude Include="TreeNodePositioning.hpp" />
-    <ClInclude Include="imgui\backend\imgui_impl_glfw.h" />
-    <ClInclude Include="imgui\backend\imgui_impl_opengl2.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\imstb_rectpack.h" />
-    <ClInclude Include="imgui\imstb_textedit.h" />
-    <ClInclude Include="imgui\imstb_truetype.h" />
-    <ClInclude Include="Log.hpp" />
-    <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TwoThreeTree.hpp" />
+    <ClInclude Include="src\font\Cousine-Regular.hpp" />
+    <ClInclude Include="src\font\font.hpp" />
+    <ClInclude Include="src\font\Karla-Regular.hpp" />
+    <ClInclude Include="src\imgui\backend\imgui_impl_glfw.h" />
+    <ClInclude Include="src\imgui\backend\imgui_impl_opengl2.h" />
+    <ClInclude Include="src\imgui\imconfig.h" />
+    <ClInclude Include="src\imgui\imgui.h" />
+    <ClInclude Include="src\imgui\imgui_internal.h" />
+    <ClInclude Include="src\imgui\imstb_rectpack.h" />
+    <ClInclude Include="src\imgui\imstb_textedit.h" />
+    <ClInclude Include="src\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\Log.hpp" />
+    <ClInclude Include="src\Menu.hpp" />
+    <ClInclude Include="src\stb_image\stb_image.hpp" />
+    <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\TreeNodePositioning.hpp" />
+    <ClInclude Include="src\TwoThreeTree.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

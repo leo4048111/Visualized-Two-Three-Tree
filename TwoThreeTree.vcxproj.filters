@@ -31,81 +31,81 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\backend\imgui_impl_glfw.cpp">
+      <Filter>imgui\backend</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\backend\imgui_impl_opengl2.cpp">
+      <Filter>imgui\backend</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdafx.cpp">
       <Filter>pch</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_tables.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\backend\imgui_impl_glfw.cpp">
-      <Filter>imgui\backend</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\backend\imgui_impl_opengl2.cpp">
-      <Filter>imgui\backend</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="src\font\Cousine-Regular.hpp">
+      <Filter>font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font\font.hpp">
+      <Filter>font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font\Karla-Regular.hpp">
+      <Filter>font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\backend\imgui_impl_glfw.h">
+      <Filter>imgui\backend</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\backend\imgui_impl_opengl2.h">
+      <Filter>imgui\backend</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log.hpp">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.hpp">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stdafx.h">
       <Filter>pch</Filter>
     </ClInclude>
-    <ClInclude Include="TwoThreeTree.hpp">
-      <Filter>ds</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imconfig.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_internal.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\backend\imgui_impl_glfw.h">
-      <Filter>imgui\backend</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\backend\imgui_impl_opengl2.h">
-      <Filter>imgui\backend</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_rectpack.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_textedit.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_truetype.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.hpp">
-      <Filter>menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Log.hpp">
-      <Filter>menu</Filter>
-    </ClInclude>
-    <ClInclude Include="font\Karla-Regular.hpp">
-      <Filter>font</Filter>
-    </ClInclude>
-    <ClInclude Include="font\Cousine-Regular.hpp">
-      <Filter>font</Filter>
-    </ClInclude>
-    <ClInclude Include="font\font.hpp">
-      <Filter>font</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image\stb_image.hpp">
+    <ClInclude Include="src\stb_image\stb_image.hpp">
       <Filter>stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="TreeNodePositioning.hpp">
+    <ClInclude Include="src\TwoThreeTree.hpp">
+      <Filter>ds</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TreeNodePositioning.hpp">
       <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>

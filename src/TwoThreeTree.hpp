@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef _DEBUG
+#include <iostream>
+#endif // DEBUG
+
 namespace ds
 {
     template <class T>
@@ -129,6 +133,13 @@ namespace ds
             return search(root, item);
         }
 
+#ifdef _DEBUG
+        void print() {
+            _print(this->root);
+            std::cout << std::endl;
+        }
+#endif
+
     private:
         enum class ROTATEDIR
         {
@@ -146,20 +157,20 @@ namespace ds
                     if (r->n == 0)
                     {
                         if ((p->left == r) && (p->middle->n == 2))
-                            return ROTATEDIR::LEFT;         
+                            return ROTATEDIR::LEFT;
 
                         else if ((p->middle == r) && (p->left->n == 2))
-                            return ROTATEDIR::RIGHT;          
+                            return ROTATEDIR::RIGHT;
                     }
                     else
                     {
                         if (!((p->left->n == 2) && (p->middle->n == 2)))
                         {
                             if (p->left == r)
-                                return ROTATEDIR::RIGHT;            
+                                return ROTATEDIR::RIGHT;
 
                             else
-                                return ROTATEDIR::LEFT;            
+                                return ROTATEDIR::LEFT;
                         }
                     }
                 }
@@ -210,7 +221,7 @@ namespace ds
                 }
             }
 
-            return ROTATEDIR::IMPOSSIBLE; 
+            return ROTATEDIR::IMPOSSIBLE;
         }
 
         RuntimeInfo<T> rotateRight(TwoThreeNode<T>* p, TwoThreeNode<T>* r, T d, TwoThreeNode<T>* child)
@@ -227,7 +238,7 @@ namespace ds
                 }
                 else
                 {
-                    r->k1 = p->k1;        
+                    r->k1 = p->k1;
                     r->n = 1;
                     p->k1 = p->left->k2;
                     p->left->n = 1;
@@ -236,7 +247,7 @@ namespace ds
             }
             else
             {
-                if (p->n == 2 && p->middle == r)     
+                if (p->n == 2 && p->middle == r)
                 {
                     p->right->k2 = p->right->k1;
                     p->right->k1 = p->k2;
@@ -263,7 +274,7 @@ namespace ds
                     p->right->n = 2;
                 }
 
-                else    
+                else
                 {
                     p->middle->k2 = p->middle->k1;
                     p->middle->k1 = p->k1;
@@ -322,7 +333,7 @@ namespace ds
             }
             else
             {
-                if (p->n == 2 && p->right == r)                {
+                if (p->n == 2 && p->right == r) {
                     p->middle->k2 = p->k2;
 
                     if (d < r->k1)
@@ -833,5 +844,26 @@ namespace ds
             else
                 return nullptr;       //Not found
         }
+
+#ifdef _DEBUG
+        void _print(ds::TwoThreeNode<T>* root)
+        {
+            if (root == nullptr) return;
+            if (root->n == 1) //2 node
+            {
+                _print(root->left);
+                std::cout << root->k1 << ' ';
+                _print(root->middle);
+            }
+            else if (root->n == 2)
+            {
+                _print(root->left);
+                std::cout << root->k1 << ' ';
+                _print(root->middle);
+                std::cout << root->k2 << ' ';
+                _print(root->right);
+            }
+        }
+#endif
     };
 }

@@ -44,6 +44,29 @@ private:
         TreeNodePositioning::Helper<int>::calculate(nodeList, tree.root, ZOOM(siblingSpacing), ZOOM(treeSpacing), ZOOM(nodeSize) * 2);
     }
 
+    static inline void MenuItemURL(const char* name_, const char* URL_)
+    {
+        if (ImGui::MenuItem(name_))
+        {
+#ifdef _WIN32
+            ::ShellExecute(NULL, "open", URL_, NULL, NULL, SW_SHOWDEFAULT);
+#else
+#if __APPLE__
+            const char* open_executable = "open";
+#else
+            const char* open_executable = "xdg-open";
+#endif
+            char command[256];
+            snprintf(command, 256, "%s \"%s\"", open_executable, path);
+            system(command);
+#endif
+        }
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("Open in browser: %s", URL_);
+        }
+    }
+
     static void helpMarker(const char* desc) {
         ImGui::TextDisabled("(?)");
         if (ImGui::IsItemHovered())
@@ -181,7 +204,12 @@ void Menu::mainloop()
 
         // Rendering
         ImGui::BeginMainMenuBar();
-        helpMarker("This application is made by Tongji University CS student 2050250.");
+        if (ImGui::BeginMenu("About"))
+        {
+            MenuItemURL("Github page", "https://github.com/leo4048111/Visualized-Two-Three-Tree");
+            ImGui::EndMenu();
+        }
+        helpMarker("Tongji University Data Structure course design by 2050250.");
         ImGui::EndMainMenuBar();
         renderCanvas();
         renderLog();
