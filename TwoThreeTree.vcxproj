@@ -119,6 +119,7 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\TreeNodePositioning.hpp" />
     <ClInclude Include="src\TwoThreeTree.hpp" />
+    <ClInclude Include="src\Vector.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

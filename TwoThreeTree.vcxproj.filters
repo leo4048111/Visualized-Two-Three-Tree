@@ -108,5 +108,8 @@
     <ClInclude Include="src\TreeNodePositioning.hpp">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\Vector.hpp">
+      <Filter>ds</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
