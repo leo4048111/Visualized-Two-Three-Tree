@@ -27,7 +27,8 @@ int main()
 	LOG("[%s] %s\n", "Info", "Window has been created...");
 	//set icon
 	icon.pixels = stbi_load("icon.jpeg", &icon.width, &icon.height, &channels, 4);
-	glfwSetWindowIcon(window, 1, &icon);
+	if (icon.pixels != nullptr)
+		glfwSetWindowIcon(window, 1, &icon);
 	//context
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1); //enable vsync
