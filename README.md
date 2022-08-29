@@ -26,6 +26,6 @@
 + 样式设置（Set Styles）
 + 其它功能（Miscellaneous features, find out urself）
 ## 截图（Screenshot）
-![screenshot](https://raw.githubusercontent.com/leo4048111/Visualized-Two-Three-Tree/main/screenshot/screenshot.png?token=GHSAT0AAAAAABRWPC25ZJCEW4ISJCUYXDACYYMCEMA)
+![screenshot](https://github.com/leo4048111/Visualized-Two-Three-Tree/blob/main/screenshot/screenshot.png)
 ## License
 All 3rd-party assets and libraries used in this project retain all rights under their respective licenses.
