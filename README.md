@@ -7,7 +7,7 @@
 息。**
 ## 操作说明（Manual）
 **通过左上方控件添加、删除、查找节点，在右侧画布窗口可视化显示树。使用左键按住节点可以拖动节点，右键按住画布可以拖动画布，右键单击节点可以标记/取消标记节点，使用样式设置栏可以设置树绘制的样式。  
-（Insert/Delete/Search for Node with respectives controls. Tree will be drawn in the canvas window. Hold mouse left key to drag a node, hold mouse right key to drag the canvas, press mouse right key on any node to mark/unmark it, use controls under Misc tab to set styles for visualization.）
+（Insert/Delete/Search for Node with respectives controls. Tree will be drawn in the canvas window. Hold mouse left key to drag a node, hold mouse right key to drag the canvas, press mouse right key on any node to mark/unmark it, use controls under Misc tab to set styles for visualization.）**
 ## 运行平台（Platform）
 （1）操作系统（OS）：Windows11 Pro build 22000.795  
 （2）开发语言（Language）：C++(ISO C++17 Standard)  
