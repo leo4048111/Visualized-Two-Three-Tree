@@ -1,5 +1,5 @@
 # 二叉树数据结构可视化(Visualized-two-three-tree)
-数据结构课程设计，实现能够支持动态插入、查找、删除节点操作的可视化2-3树(Implement a visualized 2-3 tree which supports node insertion, search and deletion dynamically.)
+数据结构课程设计(Tongji University CS10016503)，实现能够支持动态插入、查找、删除节点操作的可视化2-3树(Implement a visualized 2-3 tree which supports node insertion, search and deletion dynamically.)
 ## 题目要求（Problem description）
 **试从空树出发构造一棵深度至少为 3（不包括失误结点）的 3 阶 B-树（又称 2-3 树），
 并可以随时进行查找、插入、删除等操作。
